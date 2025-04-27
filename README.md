@@ -1,36 +1,47 @@
-# Phishing Website Detection 
+#Topic:Phishing Website Detection using an Ensemble Machine Learning Approch.
 
-This repository contains the complete implementation of a phishing website detection system developed using three machine learning models — Convolutional Neural Network (CNN), Multi-Layer Perceptron (MLP), and Support Vector Machine (SVM). The project culminates in a **weighted soft voting ensemble** model that improves performance by combining all three classifiers.
+# Aim
+The project aims to build a phishing website detection system by combining Convolutional Neural Network (CNN), Multi-Layer Perceptron (MLP), and Support Vector Machine (SVM) models into a weighted soft voting ensemble. The goal is to improve phishing detection accuracy and reduce false positives compared to using standalone models.
 
+#Data Used
+Dataset: Phishing Site URLs Dataset-https://www.kaggle.com/datasets/taruntiwarihp/phishing-site-urls
+Source: Kaggle (over 549,000 URLs labeled as "phishing" or "legitimate")
 
-## Project Overview
-Phishing websites trick users into revealing sensitive information. This project uses machine learning to automatically detect such websites. It compares individual models and demonstrates how an ensemble approach boosts accuracy and reduces false positives.
+#Features:
+Raw URLs (for CNN input)
+Engineered features like URL length, entropy, subdomain count, special character counts, HTTPS presence, etc. (for MLP and SVM)
 
+#Input Format
+Input: A URL string (e.g., https://example.com/login)
+Format: Plain text string.
 
-## Dataset
-- **Source**: [Kaggle - Phishing Site URLs Dataset](https://www.kaggle.com/datasets/taruntiwarihp/phishing-site-urls)
-- **Entries**: 549,346
-- **Labels**: "Good" = 1, "Bad" = 0
+#Output Format
+Output:
+Predicted label: "phishing" or "legitimate"
+Evaluation metrics: Accuracy, Precision, Recall, F1-Score.
+Model comparison: CNN vs. MLP vs. SVM vs. Ensemble.
 
+#Repository Structure
+Data preprocessing/: Scripts for cleaning and feature engineering
+Model Development CNN/MLP/SVM/: Building individual models
+TUNED CNN/MLP/SVM/: CNN/MLP/SVM models with optimized hyperparameters
+TUNED ENSEMBLE MODEL/: Weighted soft voting ensemble integration
+ensemble model development/: Scripts for final ensemble assembly
+FINAL RESULT VALUATION/: Model evaluation results and confusion matrices
+requirements.txt: Python library requirements
 
+#Code Structure
+Data analysis
+Data preprocessing
+cnn_model.py – Builds and trains the CNN model.
+mlp_model.py – Builds and trains the MLP model.
+svm_model.py – Builds and trains the SVM model.
+ensemble_model.py – Combines predictions using weighted soft voting (CNN: 0.6, MLP: 0.3, SVM: 0.1).
+live_prediction.py – Takes a URL as input and outputs ensemble prediction.
 
-## Models Used
-
-- **CNN**: Character-level model with 1D convolution trained on padded URL tokens.
-- **MLP**: Feature-based model using URL length, special characters, entropy, etc.
-- **SVM**: RBF kernel with tuned hyperparameters.
-- **Ensemble**: Weighted soft voting strategy (CNN: 0.6, MLP: 0.3, SVM: 0.1).
-
-
-## Performance Summary
-
-| Model    | Accuracy | Phishing F1 | Legitimate F1 |
-|----------|----------|-------------|----------------|
-| CNN      | 96.25%   | 93%         | 97%            |
-| MLP      | 84.88%   | 69%         | 90%            |
-| SVM      | 72.57%   | 68%         | 76%            |
-| Ensemble | 96.16%   | 93%         | 97%            |
-
-
-## Real-Time Testing
-A set of URLs was tested using the final ensemble model. These tests confirmed the model’s ability to correctly identify both phishing and legitimate sites. Screenshots and results are available in the appendix of the project report.
+#How It Works
+Step 1: Preprocess and extract features from the dataset.
+Step 2: Train CNN, MLP, and SVM models individually.
+Step 3: Combine predictions using weighted soft voting to form the ensemble model.
+Step 4: compare the models accuracy.
+step 5: Test the ensemble model.
